@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.8.3 on win32)" generated="20210312 18:40:03.265" rpa="false">
+<suite id="s1" name="Cadastro" source="C:\Gitlab_Fasthz\andrehz_teste\tests\api\cadastro.robot">
+<test id="s1-t1" name="CADASTRO COM SUCESSO">
+<kw name="Create Session" library="RequestsLibrary" type="setup">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>FastShop</arg>
+<arg>${base_url}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:03.931" level="INFO">Creating Session using : alias=FastShop, url=https://apiqa.fastshop.com.br, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20210312 18:40:03.931" endtime="20210312 18:40:03.931"></status>
+</kw>
+<kw name="Cadastro criar um usuario com sucesso" library="services">
+<arguments>
+<arg>201</arg>
+</arguments>
+<kw name="Cpf" library="FakerLibrary">
+<assign>
+<var>${CPF}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.932" level="INFO">${CPF} = 184.367.520-07</msg>
+<status status="PASS" starttime="20210312 18:40:03.932" endtime="20210312 18:40:03.932"></status>
+</kw>
+<kw name="Name" library="FakerLibrary">
+<doc>:example 'John Doe'</doc>
+<assign>
+<var>${NOMEFAKE}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.932" level="INFO">${NOMEFAKE} = Sra. Luana Ribeiro</msg>
+<status status="PASS" starttime="20210312 18:40:03.932" endtime="20210312 18:40:03.932"></status>
+</kw>
+<kw name="Phone Number" library="FakerLibrary">
+<assign>
+<var>${TELEFONEFAKE}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.932" level="INFO">${TELEFONEFAKE} = (051) 6342-7609</msg>
+<status status="PASS" starttime="20210312 18:40:03.932" endtime="20210312 18:40:03.932"></status>
+</kw>
+<kw name="Word" library="FakerLibrary">
+<doc>:returns: A random word, eg: 'lorem'</doc>
+<assign>
+<var>${PALAVRAFAKE}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.933" level="INFO">${PALAVRAFAKE} = asperiores</msg>
+<status status="PASS" starttime="20210312 18:40:03.933" endtime="20210312 18:40:03.933"></status>
+</kw>
+<kw name="Password" library="FakerLibrary">
+<doc>Generate a random password of the specified ``length``.</doc>
+<assign>
+<var>${PASSWORDFAKE}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.933" level="INFO">${PASSWORDFAKE} = i+N%%ZjJ)9</msg>
+<status status="PASS" starttime="20210312 18:40:03.933" endtime="20210312 18:40:03.933"></status>
+</kw>
+<kw name="Random Number" library="FakerLibrary">
+<doc>Generate a random integer according to the following rules:</doc>
+<assign>
+<var>${NUMEROFAKE}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.933" level="INFO">${NUMEROFAKE} = 190065</msg>
+<status status="PASS" starttime="20210312 18:40:03.933" endtime="20210312 18:40:03.933"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Connection=Connection</arg>
+<arg>User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36</arg>
+<arg>Content-Type=application/json</arg>
+<arg>Accept=application/json, text/plain, */*</arg>
+<arg>checkout-api-version=v1</arg>
+<arg>channel=webapp</arg>
+</arguments>
+<assign>
+<var>&amp;{headers}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.934" level="INFO">&amp;{headers} = { Connection=Connection | User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 | Content-Type=application/json | Accept=applica...</msg>
+<status status="PASS" starttime="20210312 18:40:03.933" endtime="20210312 18:40:03.934"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${CPF[0:3]}${CPF[4:7]}${CPF[8:11]}${CPF[12:]}</arg>
+</arguments>
+<assign>
+<var>${CPF_VALIDO}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.934" level="INFO">${CPF_VALIDO} = 18436752007</msg>
+<status status="PASS" starttime="20210312 18:40:03.934" endtime="20210312 18:40:03.934"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${PALAVRAFAKE}_${NUMEROFAKE}_hz@fastshopteste.com.br</arg>
+</arguments>
+<assign>
+<var>${EMAIL_VALIDO}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.935" level="INFO">${EMAIL_VALIDO} = asperiores_190065_hz@fastshopteste.com.br</msg>
+<status status="PASS" starttime="20210312 18:40:03.935" endtime="20210312 18:40:03.935"></status>
+</kw>
+<kw name="Convert To Json" library="Helpers">
+<arguments>
+<arg>{"document":"${CPF_VALIDO}","name":"${NOMEFAKE}","birthday":"1985-06-03","gender":"Male","tradeName":"","companyName":"","ie":"","telephone":"(11) 987488195","cellphone":"(11) 987488195","email":"${EMAIL_VALIDO}","password":"12345678","receiveEmailFast":true,"receiveSMSFast":true,"receiveEmailOthers":true,"cpf":"${CPF_VALIDO}","emailVerify":"${EMAIL_VALIDO}","passwordVerify":"12345678","zipCode":"07110040","streetName":"R R MARIA DE CASTRO MESQUITA","number":"84","complement":"56","district":"JARDIM SAO PAULO","city":"GUARULHOS","state":"SP","housingType":"2","country":"Brasil"}</arg>
+</arguments>
+<assign>
+<var>${payload}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($target)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20210312 18:40:03.939" level="INFO">${result} = {'document': '18436752007', 'name': 'Sra. Luana Ribeiro', 'birthday': '1985-06-03', 'gender': 'Male', 'tradeName': '', 'companyName': '', 'ie': '', 'telephone': '(11) 987488195', 'cellphone': '(11) 98...</msg>
+<status status="PASS" starttime="20210312 18:40:03.935" endtime="20210312 18:40:03.939"></status>
+</kw>
+<msg timestamp="20210312 18:40:03.940" level="INFO">${payload} = {'document': '18436752007', 'name': 'Sra. Luana Ribeiro', 'birthday': '1985-06-03', 'gender': 'Male', 'tradeName': '', 'companyName': '', 'ie': '', 'telephone': '(11) 987488195', 'cellphone': '(11) 98...</msg>
+<status status="PASS" starttime="20210312 18:40:03.935" endtime="20210312 18:40:03.940"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:03.940" level="INFO">{'document': '18436752007', 'name': 'Sra. Luana Ribeiro', 'birthday': '1985-06-03', 'gender': 'Male', 'tradeName': '', 'companyName': '', 'ie': '', 'telephone': '(11) 987488195', 'cellphone': '(11) 987488195', 'email': 'asperiores_190065_hz@fastshopteste.com.br', 'password': '12345678', 'receiveEmailFast': True, 'receiveSMSFast': True, 'receiveEmailOthers': True, 'cpf': '18436752007', 'emailVerify': 'asperiores_190065_hz@fastshopteste.com.br', 'passwordVerify': '12345678', 'zipCode': '07110040', 'streetName': 'R R MARIA DE CASTRO MESQUITA', 'number': '84', 'complement': '56', 'district': 'JARDIM SAO PAULO', 'city': 'GUARULHOS', 'state': 'SP', 'housingType': '2', 'country': 'Brasil'}</msg>
+<status status="PASS" starttime="20210312 18:40:03.940" endtime="20210312 18:40:03.940"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>FastShop</arg>
+<arg>/fastshop-qa/wcs/resources/v1/customer/create</arg>
+<arg>data=${payload}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20210312 18:40:04.926" level="INFO">POST Request : url=https://apiqa.fastshop.com.br/fastshop-qa/wcs/resources/v1/customer/create 
+ path_url=/fastshop-qa/wcs/resources/v1/customer/create 
+ headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'Connection', 'Content-Type': 'application/json', 'checkout-api-version': 'v1', 'channel': 'webapp', 'Content-Length': '691'} 
+ body={"document": "18436752007", "name": "Sra. Luana Ribeiro", "birthday": "1985-06-03", "gender": "Male", "tradeName": "", "companyName": "", "ie": "", "telephone": "(11) 987488195", "cellphone": "(11) 987488195", "email": "asperiores_190065_hz@fastshopteste.com.br", "password": "12345678", "receiveEmailFast": true, "receiveSMSFast": true, "receiveEmailOthers": true, "cpf": "18436752007", "emailVerify": "asperiores_190065_hz@fastshopteste.com.br", "passwordVerify": "12345678", "zipCode": "07110040", "streetName": "R R MARIA DE CASTRO MESQUITA", "number": "84", "complement": "56", "district": "JARDIM SAO PAULO", "city": "GUARULHOS", "state": "SP", "housingType": "2", "country": "Brasil"} 
+ </msg>
+<msg timestamp="20210312 18:40:04.927" level="INFO">POST Response : url=https://apiqa.fastshop.com.br/fastshop-qa/wcs/resources/v1/customer/create 
+ status=201, reason=Created 
+ body={"WCToken":"98179036%2CMbsnkbbQk41w3BPQl98AvSC2F6iURAJ%2BjohwnFNOXrtCuIQlwTN9AajqZLQuEnazpxCs0ZfeM7nMSkwv91fjwm3YZCFYpmnWUkQ1c9GF4Zu7KX3MwQCvmV%2BpGoqrb0hvC%2FDYgyUg%2By3t5AlCQKCm%2B4CtbzRaQ4duqeXC%2BI%2BCpqsns6kceDaHyERacOhNtNz6kIasDUUZ1D%2Fd9PvRvMJ2kg%3D%3D","WCTrustedToken":"98179036%2CpKja4wyIVFepUnyx1CR4tAo7NK0%3D","userID":"98179036","nome":"Sra. Luana Ribeiro"} 
+ </msg>
+<msg timestamp="20210312 18:40:04.927" level="INFO">c:\python38\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'apiqa.fastshop.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210312 18:40:04.928" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:03.940" endtime="20210312 18:40:04.928"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:04.928" endtime="20210312 18:40:04.929"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:04.929" endtime="20210312 18:40:04.930"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${CPF_VALIDO}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:04.930" endtime="20210312 18:40:04.930"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${EMAIL_VALIDO}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:04.930" endtime="20210312 18:40:04.931"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${CPF_VALIDO}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:04.931" level="INFO">18436752007</msg>
+<status status="PASS" starttime="20210312 18:40:04.931" endtime="20210312 18:40:04.931"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${EMAIL_VALIDO}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:04.931" level="INFO">asperiores_190065_hz@fastshopteste.com.br</msg>
+<status status="PASS" starttime="20210312 18:40:04.931" endtime="20210312 18:40:04.931"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>${resp.status_code_page}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:04.932" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:04.931" endtime="20210312 18:40:04.932"></status>
+</kw>
+<kw name="Convert To Json" library="Helpers">
+<arguments>
+<arg>{"document":"${CPF_VALIDO}","password":"12345678"}</arg>
+</arguments>
+<assign>
+<var>${payload}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($target)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20210312 18:40:04.932" level="INFO">${result} = {'document': '18436752007', 'password': '12345678'}</msg>
+<status status="PASS" starttime="20210312 18:40:04.932" endtime="20210312 18:40:04.932"></status>
+</kw>
+<msg timestamp="20210312 18:40:04.932" level="INFO">${payload} = {'document': '18436752007', 'password': '12345678'}</msg>
+<status status="PASS" starttime="20210312 18:40:04.932" endtime="20210312 18:40:04.933"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:04.933" level="INFO">{'document': '18436752007', 'password': '12345678'}</msg>
+<status status="PASS" starttime="20210312 18:40:04.933" endtime="20210312 18:40:04.933"></status>
+</kw>
+<kw name="Sprints Post Session" library="services_sprints">
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>&amp;{headers}</var>
+</assign>
+<msg timestamp="20210312 18:40:04.933" level="INFO">&amp;{headers} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20210312 18:40:04.933" endtime="20210312 18:40:04.933"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>FastShop</arg>
+<arg>/fastshop-qa/wcs/resources/v1/auth/login</arg>
+<arg>data=${payload}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.605" level="INFO">POST Request : url=https://apiqa.fastshop.com.br/fastshop-qa/wcs/resources/v1/auth/login 
+ path_url=/fastshop-qa/wcs/resources/v1/auth/login 
+ headers={'User-Agent': 'python-requests/2.23.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cookie': 'x-apm-brtm-servertime=1615585205103', 'Content-Length': '51'} 
+ body={"document": "18436752007", "password": "12345678"} 
+ </msg>
+<msg timestamp="20210312 18:40:05.605" level="INFO">POST Response : url=https://apiqa.fastshop.com.br/fastshop-qa/wcs/resources/v1/auth/login 
+ status=201, reason=Created 
+ body={
+	"WCToken": "98179036%2CDDANaLeA3icx15LcQgWknSeceeB1TAdKjOFMDXnYz3ZegT7IGZk1nKm2IIapSuKyPrR5zPIU%2BmdIkXsOrOL5r4pDqr5EB14zAGJgM59Bju5Z8zTEDFyetcYMevn1jgEo%2FuZADLuEvwRDsBdI1rGrFwmBJ5JH2nZ2YfSNdxFNrchEGTG1ltKOMZbhApUk41vx%2FqXgXXkNpVUCFeWq8lET0Q%3D%3D",
+	"WCTrustedToken": "98179036%2CBMjwNDUIraijU%2F0q5DCYJgdBXjo%3D",
+	"email": "asperiores_190065_hz@fastshopteste.com.br",
+	"identifiers": null,
+	"nome": "Sra. Luana Ribeiro",
+	"prime": null,
+	"userID": "98179036"
+} 
+ </msg>
+<msg timestamp="20210312 18:40:05.605" level="INFO">c:\python38\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'apiqa.fastshop.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210312 18:40:05.607" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:04.934" endtime="20210312 18:40:05.607"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.607" level="INFO">{'document': '18436752007', 'password': '12345678'}</msg>
+<status status="PASS" starttime="20210312 18:40:05.607" endtime="20210312 18:40:05.607"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${headers}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.607" level="INFO">{'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20210312 18:40:05.607" endtime="20210312 18:40:05.607"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${resp}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.608" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:05.607" endtime="20210312 18:40:05.608"></status>
+</kw>
+<msg timestamp="20210312 18:40:05.608" level="INFO">${resp} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:04.933" endtime="20210312 18:40:05.608"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.608" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:05.608" endtime="20210312 18:40:05.608"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.json()['WCToken']}</arg>
+</arguments>
+<assign>
+<var>${WCToken}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.609" level="INFO">${WCToken} = 98179036%2CDDANaLeA3icx15LcQgWknSeceeB1TAdKjOFMDXnYz3ZegT7IGZk1nKm2IIapSuKyPrR5zPIU%2BmdIkXsOrOL5r4pDqr5EB14zAGJgM59Bju5Z8zTEDFyetcYMevn1jgEo%2FuZADLuEvwRDsBdI1rGrFwmBJ5JH2nZ2YfSNdxFNrchEGTG1ltKOMZbhA...</msg>
+<status status="PASS" starttime="20210312 18:40:05.608" endtime="20210312 18:40:05.609"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.609" level="INFO">{'document': '18436752007', 'password': '12345678'}</msg>
+<status status="PASS" starttime="20210312 18:40:05.609" endtime="20210312 18:40:05.609"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.json()['WCTrustedToken']}</arg>
+</arguments>
+<assign>
+<var>${WCTrustedToken}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.609" level="INFO">${WCTrustedToken} = 98179036%2CBMjwNDUIraijU%2F0q5DCYJgdBXjo%3D</msg>
+<status status="PASS" starttime="20210312 18:40:05.609" endtime="20210312 18:40:05.609"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${WCTrustedToken}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.610" level="INFO">98179036%2CBMjwNDUIraijU%2F0q5DCYJgdBXjo%3D</msg>
+<status status="PASS" starttime="20210312 18:40:05.609" endtime="20210312 18:40:05.610"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${resp.json()['userID']}</arg>
+</arguments>
+<assign>
+<var>${userID}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.610" level="INFO">${userID} = 98179036</msg>
+<status status="PASS" starttime="20210312 18:40:05.610" endtime="20210312 18:40:05.610"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${userID}</arg>
+</arguments>
+<msg timestamp="20210312 18:40:05.610" level="INFO">98179036</msg>
+<status status="PASS" starttime="20210312 18:40:05.610" endtime="20210312 18:40:05.610"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Connection=keep-alive</arg>
+<arg>WCTrustedToken=${WCTrustedToken}</arg>
+<arg>User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36</arg>
+<arg>userAgent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36</arg>
+<arg>WCToken=${WCToken}</arg>
+<arg>Content-Type=application/json</arg>
+<arg>Accept=application/json, text/plain, */*</arg>
+<arg>checkout-api-version=v1</arg>
+<arg>channel=webapp</arg>
+<arg>storeId=10151</arg>
+<arg>ip=172.84.04</arg>
+</arguments>
+<assign>
+<var>&amp;{headers}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.611" level="INFO">&amp;{headers} = { Connection=keep-alive | WCTrustedToken=98179036%2CBMjwNDUIraijU%2F0q5DCYJgdBXjo%3D | User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 S...</msg>
+<status status="PASS" starttime="20210312 18:40:05.610" endtime="20210312 18:40:05.611"></status>
+</kw>
+<kw name="Convert To Json" library="Helpers">
+<arguments>
+<arg>{"email":"${PALAVRAFAKE}_${NUMEROFAKE}_hz@fastshopteste.com.br","planId":"17914","productId":"72905","cardNumber":"5555555555555557","holderName":"teste teste","expireDate":"01/2022","document":"${CPF_VALIDO}","cvv":"123"}</arg>
+</arguments>
+<assign>
+<var>${payload}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<arguments>
+<arg>json.loads($target)</arg>
+<arg>json</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20210312 18:40:05.612" level="INFO">${result} = {'email': 'asperiores_190065_hz@fastshopteste.com.br', 'planId': '17914', 'productId': '72905', 'cardNumber': '5555555555555557', 'holderName': 'teste teste', 'expireDate': '01/2022', 'document': '184...</msg>
+<status status="PASS" starttime="20210312 18:40:05.611" endtime="20210312 18:40:05.612"></status>
+</kw>
+<msg timestamp="20210312 18:40:05.612" level="INFO">${payload} = {'email': 'asperiores_190065_hz@fastshopteste.com.br', 'planId': '17914', 'productId': '72905', 'cardNumber': '5555555555555557', 'holderName': 'teste teste', 'expireDate': '01/2022', 'document': '184...</msg>
+<status status="PASS" starttime="20210312 18:40:05.611" endtime="20210312 18:40:05.612"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>FastShop</arg>
+<arg>/prime/subscription</arg>
+<arg>data=${payload}</arg>
+<arg>headers=${headers}</arg>
+</arguments>
+<assign>
+<var>${resp}</var>
+</assign>
+<msg timestamp="20210312 18:40:10.019" level="INFO">POST Request : url=https://apiqa.fastshop.com.br/prime/subscription 
+ path_url=/prime/subscription 
+ headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json, text/plain, */*', 'Connection': 'keep-alive', 'WCTrustedToken': '98179036%2CBMjwNDUIraijU%2F0q5DCYJgdBXjo%3D', 'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'WCToken': '98179036%2CDDANaLeA3icx15LcQgWknSeceeB1TAdKjOFMDXnYz3ZegT7IGZk1nKm2IIapSuKyPrR5zPIU%2BmdIkXsOrOL5r4pDqr5EB14zAGJgM59Bju5Z8zTEDFyetcYMevn1jgEo%2FuZADLuEvwRDsBdI1rGrFwmBJ5JH2nZ2YfSNdxFNrchEGTG1ltKOMZbhApUk41vx%2FqXgXXkNpVUCFeWq8lET0Q%3D%3D', 'Content-Type': 'application/json', 'checkout-api-version': 'v1', 'channel': 'webapp', 'storeId': '10151', 'ip': '172.84.04', 'Cookie': 'x-apm-brtm-servertime=1615585205103', 'Content-Length': '224'} 
+ body={"email": "asperiores_190065_hz@fastshopteste.com.br", "planId": "17914", "productId": "72905", "cardNumber": "5555555555555557", "holderName": "teste teste", "expireDate": "01/2022", "document": "18436752007", "cvv": "123"} 
+ </msg>
+<msg timestamp="20210312 18:40:10.019" level="INFO">POST Response : url=https://apiqa.fastshop.com.br/prime/subscription 
+ status=200, reason=OK 
+ body={"message":"Pagamento aprovado","statusCode":200,"data":{"date":"2021-03-12T21:40:10.956Z","subscriptionId":457752,"orderStatus":"paid"}} 
+ </msg>
+<msg timestamp="20210312 18:40:10.019" level="INFO">c:\python38\lib\site-packages\urllib3\connectionpool.py:979: InsecureRequestWarning: Unverified HTTPS request is being made to host 'apiqa.fastshop.com.br'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210312 18:40:10.020" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:05.612" endtime="20210312 18:40:10.020"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:10.020" endtime="20210312 18:40:10.021"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${payload}</arg>
+</arguments>
+<status status="PASS" starttime="20210312 18:40:10.021" endtime="20210312 18:40:10.022"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20210312 18:40:10.022" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" starttime="20210312 18:40:10.022" endtime="20210312 18:40:10.023"></status>
+</kw>
+<status status="PASS" starttime="20210312 18:40:03.931" endtime="20210312 18:40:10.023"></status>
+</kw>
+<status status="PASS" starttime="20210312 18:40:03.930" endtime="20210312 18:40:10.023" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20210312 18:40:03.266" endtime="20210312 18:40:10.024"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="Cadastro">Cadastro</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

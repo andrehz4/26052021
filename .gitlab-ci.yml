@@ -1,0 +1,62 @@
+stages:
+  - Boleto
+  - Cartão de Crédito
+  - Dois Cartões de Crédito
+  - Pix
+#######################################################################################################################################
+####################################### API ###########################################################################################
+#######################################################################################################################################
+
+  
+# WEB Testes com Docker+Pipeline HOME
+Boleto_Pagar:
+    stage: Boleto
+    image: "registry.gitlab.com/andrehz/dockerfastshopqa:latest"
+    tags:
+        - gitlab-org-docker
+    artifacts:
+        when: always 
+        paths:
+            - ./tests/
+        expire_in: 1 week
+    script:
+        - robot -d ./tests/ -v BROWSER:headlesschrome ./tests/web/Sprints/Testes_IBM/Pagar_Boleto.robot
+
+Cartao_de_credito_Pagar:
+    stage: Cartão de Crédito
+    image: "registry.gitlab.com/andrehz/dockerfastshopqa:latest"
+    tags:
+        - gitlab-org-docker
+    artifacts:
+        when: always 
+        paths:
+            - ./tests/
+        expire_in: 1 week
+    script:
+        - robot -d ./tests/ -v BROWSER:headlesschrome ./tests/web/Sprints/Testes_IBM/Pagar_Cartao.robot
+
+Dois_Cartões_de_credito_Pagar:
+    stage: Dois Cartões de Crédito
+    image: "registry.gitlab.com/andrehz/dockerfastshopqa:latest"
+    tags:
+        - gitlab-org-docker
+    artifacts:
+        when: always 
+        paths:
+            - ./tests/
+        expire_in: 1 week
+    script:
+        - robot -d ./tests/ -v BROWSER:headlesschrome ./tests/web/Sprints/Testes_IBM/Pagar_Dois_Cartoes.robot
+
+Pix_Pagar:
+    stage: Pix
+    image: "registry.gitlab.com/andrehz/dockerfastshopqa:latest"
+    tags:
+        - gitlab-org-docker
+    artifacts:
+        when: always 
+        paths:
+            - ./tests/
+        expire_in: 1 week
+    script:
+        - robot -d ./tests/ -v BROWSER:headlesschrome ./tests/web/Sprints/Testes_IBM/Pagar_PIX.robot
